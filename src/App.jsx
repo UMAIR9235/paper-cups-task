@@ -54,7 +54,10 @@ function App() {
     setShowButton(true);
   }
   return (
-    <div className="text-red-500 w-full h-dvh relative">
+    <div className="text-red-500 w-full h-dvh relative flex justify-center items-center">
+      <h1 className="text-3xl font-semibold text-indigo-500">
+        Wait for the Chat Button to appear
+      </h1>
       <ChatWidget
         token="76deaf12-df21-49dc-b0bc-114467b17ff2"
         inbox="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxx"
