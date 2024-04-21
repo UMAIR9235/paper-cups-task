@@ -10,6 +10,7 @@ function App() {
 
   console.log(showButton);
   useEffect(() => {
+    // creating custom styles that would be applied on a particular screen size.
     customStylesObject = {
       chatContainer: {
         width: "100%",
@@ -34,6 +35,7 @@ function App() {
       setCustomStyles();
     }
   }, [showButton]);
+  // when the screen shrinks or widenes whlie checking the responsiveness on the browser this code block executes
   window.addEventListener("resize", () => {
     console.log(window.innerWidth);
     if (window.innerWidth < 480 && !customStyles) {
@@ -44,6 +46,7 @@ function App() {
       console.log("removing styles");
     }
   });
+  // below function are called when the chat window is opened or closed
   function hideButton() {
     setShowButton(false);
   }
@@ -53,34 +56,26 @@ function App() {
   return (
     <div className="text-red-500 w-full h-dvh relative">
       <ChatWidget
-        // Pass in your Papercups account token here after signing up
         token="76deaf12-df21-49dc-b0bc-114467b17ff2"
-        // Specify a Papercups inbox
         inbox="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxx"
         title="Welcome to Papercups!"
         subtitle="Ask us anything in the chat window below 😊"
         newMessagePlaceholder="Start typing..."
         primaryColor="#13c2c2"
-        // Optionally pass in a default greeting
         greeting="Hi there! How can I help you?"
-        // Optionally pass in metadata to identify the customer
-
         customer={{
           name: "Test User",
           email: "test@test.com",
           external_id: "123",
-          metadata: { version: 1, plan: "premium" }, // Custom fields go here
+          metadata: { version: 1, plan: "premium" },
         }}
+        // below three lines of code are the Modifications to the styles props of the widget to make it responsive
         onChatOpened={hideButton}
         onChatClosed={unhideButton}
         styles={customStyles}
-        // Optionally specify the base URL
+        // above three lines of code are the Modifications to the styles props of the widget to make it responsive
         baseUrl="https://app.papercups.io"
-        // Add this if you want to require the customer to enter
-        // their email before being able to send you a message
         requireEmailUpfront
-        // Add this if you want to indicate when you/your agents
-        // are online or offline to your customers
         showAgentAvailability
       />
     </div>
